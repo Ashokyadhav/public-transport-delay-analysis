@@ -90,11 +90,13 @@ lon_col = find_column(
 )
 
 route_name_col = find_column(
-    routes, ["route_short_name", "route_name", "route_id", "route"]
+    routes,
+    ["route_short_name", "route_long_name", "route_id", "route_name", "route"]
 )
 
 route_trips_col = find_column(
-    routes, ["trip_count", "scheduled_trips", "trips", "unique_trips"]
+    routes,
+    ["total_trips", "trip_count", "scheduled_trips", "trips", "unique_trips"]
 )
 
 if trips_col is None or stop_name_col is None:

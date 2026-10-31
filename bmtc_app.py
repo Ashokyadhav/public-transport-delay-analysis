@@ -66,15 +66,20 @@ stop_id_col = find_column(
 )
 
 trips_col = find_column(
-    stops, ["scheduled_trips", "trip_count", "trips"]
+    stops, ["scheduled_trips_count", "scheduled_trips",
+            "trip_count", "trips"]
+)
 )
 
 routes_count_col = find_column(
-    stops, ["unique_routes", "route_count", "routes_count"]
+    stops, ["unique_routes_count", "unique_routes",
+            "route_count", "routes_count"]
+)
 )
 
 cluster_col = find_column(
-    stops, ["cluster", "cluster_label"]
+    stops, ["cluster_k2", "cluster", "cluster_label"]
+)
 )
 
 lat_col = find_column(

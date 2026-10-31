@@ -1,0 +1,168 @@
+# Bengaluru BMTC Route & Schedule Analysis
+
+An interactive data analytics dashboard for exploring Bengaluru Metropolitan Transport Corporation (BMTC) scheduled bus services, stop activity, route activity and stop clusters.
+
+Live Dashboard
+
+[Open the Streamlit Dashboard](https://public-transport-delay-analysis-nj5z6niqsaq4msdftf8ytg.streamlit.app/)
+
+ Project Overview
+
+This project analyses BMTC public transport schedule data using Python, data analysis and machine learning.
+
+The main objective is to understand:
+- Which stops have more scheduled service activity?
+- Which routes have more scheduled trips?
+- How are bus stops distributed geographically?
+- Can stops be grouped based on their service activity and location?
+
+Important: This project uses static GTFS schedule data. It does not measure actual bus delays, live arrivals, passenger counts or real-time traffic.
+
+Dataset
+
+The project uses GTFS (General Transit Feed Specification) data.
+
+Main files used:
+- `stops.txt` – stop names and geographical coordinates
+- `routes.txt` – route information
+- `trips.txt` – scheduled trips
+- `stop_times.txt` – scheduled arrival and departure times
+- `calendar.txt` – service calendar
+
+Dataset source: [BMTC GTFS dataset](https://github.com/anikets95/bmtc-data)
+
+The available calendar snapshot covers **7 November 2024 to 13 November 2024**.
+
+ Technologies Used
+
+- Python
+- Pandas
+- Plotly
+- Streamlit
+- Scikit-learn
+- GTFS data
+
+ Data Processing and Analysis
+
+The project includes:
+1. Loading and exploring GTFS files.
+2. Cleaning missing and invalid records.
+3. Combining stop, route, trip and stop-time information.
+4. Analysing scheduled activity at stops and routes.
+5. Exploring geographical distribution using latitude and longitude.
+6. Creating stop-level features for clustering.
+7. Applying K-Means clustering with K=2.
+8. Building an interactive Streamlit dashboard.
+
+ Key Dashboard Findings
+
+The dashboard currently displays:
+
+| Metric | Value |
+|---|---:|
+| Total stops | 8,305 |
+| Scheduled stop visits | 859,957 |
+| Average unique routes per stop | 12.6 |
+| Top routes in export | 10 |
+
+The scheduled stop visits metric represents the sum of scheduled trip counts across stops, not the number of unique trips.
+
+Top Routes in the Export
+
+The leading routes include:
+- 401-A
+- 300-MV
+- MF-401
+- K-2
+- 96-G
+- V-500D
+- G-7
+- KIA-9
+- V-500CA
+- 300-E
+
+ K-Means Stop Clustering
+
+K-Means was applied using stop-level service activity and geographical features.
+
+The selected K=2 model produced:
+
+| Cluster | Number of stops | Average scheduled trips per stop | Average unique routes per stop |
+|---|---:|---:|---:|
+| 0 | 7,398 | 50.80 | 6.57 |
+| 1 | 907 | 533.74 | 62.10 |
+
+Interpretation:
+- Cluster 0 contains stops with relatively lower scheduled service activity.
+- Cluster 1 contains stops with much higher scheduled service activity and route connectivity.
+
+These are analytical interpretations of the clusters, not official BMTC stop categories.
+
+The K=2 model achieved a silhouette score of approximately 0.470. This indicates moderate separation between the clusters, not prediction accuracy.
+
+ Dashboard Features
+
+- Interactive stop-cluster filter
+- Key project metrics
+- Top 15 stops by scheduled service activity
+- Top routes by scheduled trips
+- K-Means cluster summary
+- Stop distribution map
+- Searchable stop details
+- CSV download option
+
+ Run the Project Locally
+
+1. Clone the repository
+
+bash
+git clone https://github.com/Ashokyadhav/public-transport-delay-analysis.git
+cd public-transport-delay-analysis
+
+ 2. Install dependencies
+
+bash
+pip install -r requirements.txt
+
+3. Run the Streamlit application
+
+bash
+streamlit run bmtc_app.py
+
+ Project Files
+text
+public-transport-delay-analysis/
+│
+├── bmtc_app.py
+├── clustered_stops.csv
+├── top_routes.csv
+├── requirements.txt
+└── bengaluru_transport_delay_analysis.ipynb
+
+ Limitations
+
+- The dataset is a static schedule snapshot covering 7–13 November 2024.
+- It does not contain actual bus arrival observations or live vehicle positions.
+- Passenger demand and passenger counts are not available.
+- Clustering results depend on the selected features and model settings.
+- The geographical analysis uses stop coordinates; it does not represent actual road travel distances.
+
+ Future Improvements
+
+- Integrate reliable real-time bus position and arrival data if available.
+- Add more historical schedule snapshots for comparison.
+- Include passenger demand data if a suitable dataset becomes available.
+- Improve geographical and route-level visualisations.
+- Explore additional clustering approaches.
+
+Conclusion
+
+This project demonstrates how public transport schedule data can be cleaned, analysed and visualised using Python. It also demonstrates the use of K-Means clustering to identify groups of stops with different levels of scheduled service activity.
+
+The final result is an interactive dashboard that makes BMTC schedule information easier to explore and understand.
+
+---
+
+Project: Bengaluru BMTC Route & Schedule Analysis  
+Developer: Ashok Yadhav  
+GitHub: https://github.com/Ashokyadhav/public-transport-delay-analysis

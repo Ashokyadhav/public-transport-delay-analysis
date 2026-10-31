@@ -29,7 +29,7 @@ st.info(
 # 2. Load Dataset
 # -----------------------------------
 
-DATA_DIR = Path("dashboard_exports")
+DATA_DIR = Path(".")
 
 @st.cache_data
 def load_data():
